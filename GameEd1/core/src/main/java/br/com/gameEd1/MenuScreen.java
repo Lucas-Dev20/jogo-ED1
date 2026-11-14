@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -20,11 +21,18 @@ public class MenuScreen extends ScreenAdapter {
     private Stage stage;
     private Skin skin;
 
+    private Texture backgroundTexture;
+
     public MenuScreen(Main game) {
         this.game = game;
 
         // Cria a interface
         stage = new Stage(new ScreenViewport());
+
+        //Pegando a imagem do Background
+        backgroundTexture = new Texture(
+            Gdx.files.internal("ceuAzul.png")
+        );
 
         // Cria os estilos dos componentes
         skin = criarSkin();
@@ -107,6 +115,14 @@ public class MenuScreen extends ScreenAdapter {
     }
 
     private void criarMenu() {
+
+        // Imagem de fundo
+        Image background = new Image(backgroundTexture);
+        background.setFillParent(true);
+        background.setScaling(Scaling.stretch);
+
+        stage.addActor(background);
+
         // Organiza os elementos
         Table tabela = new Table();
 
@@ -235,5 +251,6 @@ public class MenuScreen extends ScreenAdapter {
     public void dispose() {
         stage.dispose();
         skin.dispose();
+        backgroundTexture.dispose();
     }
 }
