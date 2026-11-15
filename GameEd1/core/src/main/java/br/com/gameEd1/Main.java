@@ -10,6 +10,7 @@ public class Main extends Game {
     public void create() {
         // Inicializa o menu principal
         setScreen(new MenuScreen(this));
+
     }
 
     @Override

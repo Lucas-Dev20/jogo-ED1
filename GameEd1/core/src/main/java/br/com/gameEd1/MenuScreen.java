@@ -138,10 +138,27 @@ public class MenuScreen extends ScreenAdapter {
 
         titulo.setFontScale(3);
 
-        // Botões
-        TextButton jogar = new TextButton(
-            "JOGAR", skin
+        TextButton jogar = new TextButton("JOGAR", skin);
+
+        // Evento do botão JOGAR
+        jogar.addListener(
+            new com.badlogic.gdx.scenes.scene2d.utils
+                .ChangeListener() {
+
+                @Override
+                public void changed(
+                    ChangeEvent event,
+                    com.badlogic.gdx.scenes.scene2d.Actor actor
+                ) {
+
+                    // Abre a fase do jogo
+                    game.setScreen(new Fase());
+
+                }
+            }
         );
+
+
 
         TextButton opcoes = new TextButton(
             "OPCOES", skin
